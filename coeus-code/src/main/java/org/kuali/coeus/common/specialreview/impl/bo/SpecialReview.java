@@ -159,6 +159,9 @@ public abstract class SpecialReview<T extends SpecialReviewExemption> extends Kc
     }
 
     public SpecialReviewType getSpecialReviewType() {
+    	if(specialReviewType == null) {
+    		refreshReferenceObject("specialReviewType");
+    	}
         return specialReviewType;
     }
 
@@ -167,6 +170,9 @@ public abstract class SpecialReview<T extends SpecialReviewExemption> extends Kc
     }
 
     public SpecialReviewApprovalType getApprovalType() {
+    	if(approvalType == null) {
+    		refreshReferenceObject("approvalType");
+    	}
         return approvalType;
     }
 

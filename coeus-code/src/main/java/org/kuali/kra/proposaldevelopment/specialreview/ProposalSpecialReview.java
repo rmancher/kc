@@ -15,6 +15,9 @@
  */
 package org.kuali.kra.proposaldevelopment.specialreview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.kuali.coeus.common.specialreview.impl.bo.SpecialReview;
 import org.kuali.coeus.propdev.impl.hierarchy.HierarchyMaintainable;
 import org.kuali.rice.krad.data.jpa.PortableSequenceGenerator;
@@ -47,7 +50,11 @@ public class ProposalSpecialReview extends SpecialReview<ProposalSpecialReviewEx
     @Convert(converter = BooleanYNConverter.class)
     private boolean hiddenInHierarchy;
 
-    public void setProposalSpecialReviewId(Long proposalSpecialReviewId) {
+    @OneToMany(targetEntity = ProposalSpecialReviewExemption.class, fetch = FetchType.LAZY, orphanRemoval = true, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "PROPOSAL_SPECIAL_REVIEW_ID", referencedColumnName = "PROPOSAL_SPECIAL_REVIEW_ID")
+    private List<ProposalSpecialReviewExemption> specialReviewExemptions;
+    
+	public void setProposalSpecialReviewId(Long proposalSpecialReviewId) {
         this.proposalSpecialReviewId = proposalSpecialReviewId;
     }
 
@@ -152,4 +159,14 @@ public class ProposalSpecialReview extends SpecialReview<ProposalSpecialReviewEx
             exemption.setProposalSpecialReviewId(null);
         }
     }
+
+    public List<ProposalSpecialReviewExemption> getSpecialReviewExemptions() {
+		return specialReviewExemptions;
+	}
+
+	public void setSpecialReviewExemptions(
+			List<ProposalSpecialReviewExemption> specialReviewExemptions) {
+		this.specialReviewExemptions = specialReviewExemptions;
+	}
+
 }
