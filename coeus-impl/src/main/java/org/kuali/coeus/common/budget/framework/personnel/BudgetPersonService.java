@@ -16,7 +16,6 @@
 package org.kuali.coeus.common.budget.framework.personnel;
 
 import java.util.List;
-
 import org.kuali.coeus.common.budget.api.personnel.BudgetPersonContract;
 import org.kuali.coeus.common.budget.api.personnel.BudgetPersonnelDetailsContract;
 import org.kuali.coeus.common.budget.framework.core.Budget;
@@ -73,7 +72,11 @@ public interface BudgetPersonService {
     public void refreshBudgetPerson(BudgetPerson budgetPerson);
     
     /**
+<<<<<<< HEAD
      * This method is to get budget person details
+=======
+     * This method is to get budget proposal person
+>>>>>>> KRACOEUS-7644
      * @param budget
      * @param budgetPerson
      * @return
