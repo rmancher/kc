@@ -17,10 +17,16 @@ package org.kuali.coeus.common.budget.framework.personnel;
 
 import org.kuali.coeus.common.budget.api.personnel.BudgetPersonnelCalculatedAmountContract;
 import org.kuali.coeus.common.budget.framework.nonpersonnel.AbstractBudgetCalculatedAmount;
+import org.kuali.coeus.common.budget.framework.period.BudgetPeriodType;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.kuali.coeus.common.budget.framework.copy.DeepCopyIgnore;
 import org.kuali.rice.krad.data.jpa.PortableSequenceGenerator;
@@ -41,8 +47,12 @@ public class BudgetPersonnelCalculatedAmount extends AbstractBudgetCalculatedAmo
     @Column(name = "BUDGET_PERSONNEL_CAL_AMTS_ID")
     private Long budgetPersonnelCalculatedAmountId;
 
-    @Column(name = "BUDGET_PERSONNEL_DETAILS_ID")
+    @Column(name = "BUDGET_PERSONNEL_DETAILS_ID", insertable = false, updatable = false)
     private Long budgetPersonnelLineItemId;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "BUDGET_PERSONNEL_DETAILS_ID", referencedColumnName = "BUDGET_PERSONNEL_DETAILS_ID")
+    private BudgetPersonnelDetails budgetPersonnelDetails;
 
     @Override
     public Integer getPersonNumber() {
@@ -70,4 +80,17 @@ public class BudgetPersonnelCalculatedAmount extends AbstractBudgetCalculatedAmo
     public void setBudgetPersonnelLineItemId(Long budgetPersonnelLineItemId) {
         this.budgetPersonnelLineItemId = budgetPersonnelLineItemId;
     }
+
+    public Long getBudgetLineItemId() {
+        return getBudgetPersonnelDetails().getBudgetLineItemId();
+    }
+
+	public BudgetPersonnelDetails getBudgetPersonnelDetails() {
+		return budgetPersonnelDetails;
+	}
+
+	public void setBudgetPersonnelDetails(BudgetPersonnelDetails budgetPersonnelDetails) {
+		this.budgetPersonnelDetails = budgetPersonnelDetails;
+	}
+
 }

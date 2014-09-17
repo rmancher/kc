@@ -121,6 +121,7 @@ public final class KeyConstants {
     public static final String QUESTION_DELETE_OPPORTUNITY_CONFIRMATION = "document.question.deleteOpportunity.text";
     public static final String QUESTION_RECALCULATE_BUDGET_CONFIRMATION = "document.question.recalculateBudget.text";
     public static final String ERROR_PERSONNEL_ATTACHMENT_PERSON_DUPLICATE = "error.personnelAttachment.person.duplicate";
+    public static final String QUESTION_BUDGET_PERSONNEL_ASSIGN_LATER_PERIOD_CONFIRMATION = "budget.personnel.question.assign.laterPeriod.text";
     
     public static final String QUESTION_APPROVE_FUTURE_REQUESTS = "document.question.approve.text";
     

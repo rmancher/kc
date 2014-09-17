@@ -72,11 +72,7 @@ public interface BudgetPersonService {
     public void refreshBudgetPerson(BudgetPerson budgetPerson);
     
     /**
-<<<<<<< HEAD
      * This method is to get budget person details
-=======
-     * This method is to get budget proposal person
->>>>>>> KRACOEUS-7644
      * @param budget
      * @param budgetPerson
      * @return

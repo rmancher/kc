@@ -37,6 +37,7 @@ import org.kuali.coeus.common.budget.api.rate.RateClassType;
 import org.kuali.coeus.common.budget.framework.query.operator.And;
 import org.kuali.coeus.common.budget.framework.query.operator.Equals;
 import org.kuali.coeus.common.budget.framework.core.Budget;
+import org.kuali.coeus.common.budget.framework.core.BudgetConstants;
 import org.kuali.coeus.common.budget.framework.core.BudgetParent;
 import org.kuali.coeus.common.budget.framework.core.BudgetDocument;
 import org.kuali.coeus.common.budget.framework.core.BudgetParentDocument;
@@ -300,7 +301,7 @@ public class AwardBudgetServiceImpl extends AbstractBudgetService<Award> impleme
         awardBudget.setAward(parentDocument.getAward());
         awardBudget.setAwardId(parentDocument.getAward().getAwardId());
         BudgetVersionOverview lastBudgetVersion = getLastBudgetVersion(parentDocument);
-        awardBudget.setOnOffCampusFlag(lastBudgetVersion == null ? Constants.DEFALUT_CAMUS_FLAG : lastBudgetVersion.getOnOffCampusFlag());
+        awardBudget.setOnOffCampusFlag(lastBudgetVersion == null ? BudgetConstants.DEFAULT_CAMPUS_FLAG : lastBudgetVersion.getOnOffCampusFlag());
         if (awardBudgetDocument.getDocumentHeader() != null && awardBudgetDocument.getDocumentHeader().hasWorkflowDocument()) {
             awardBudget.setBudgetInitiator(awardBudgetDocument.getDocumentHeader().getWorkflowDocument().getInitiatorPrincipalId());
         }
@@ -514,7 +515,8 @@ public class AwardBudgetServiceImpl extends AbstractBudgetService<Award> impleme
             List<BudgetPersonnelDetails> awardBudgetPersonnelLineItems = awardBudgetLineItem.getBudgetPersonnelDetailsList();
             List<BudgetPersonnelDetails> budgetPersonnelLineItems = budgetLineItem.getBudgetPersonnelDetailsList();
             for (BudgetPersonnelDetails budgetPersonnelDetails : budgetPersonnelLineItems) {
-                budgetPersonnelDetails.setBudgetLineItemId(budgetLineItem.getBudgetLineItemId());
+            	budgetPersonnelDetails.setBudgetLineItemId(budgetLineItem.getBudgetLineItemId());
+                budgetPersonnelDetails.setBudgetLineItem(budgetLineItem);
                 AwardBudgetPersonnelDetailsExt awardBudgetPerDetails = new AwardBudgetPersonnelDetailsExt();
                 BeanUtils.copyProperties(budgetPersonnelDetails, awardBudgetPerDetails, 
                         new String[]{"budgetPersonnelLineItemId","budgetLineItemId","budgetId","submitCostSharingFlag",

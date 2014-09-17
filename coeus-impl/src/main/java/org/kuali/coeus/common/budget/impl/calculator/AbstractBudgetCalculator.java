@@ -418,7 +418,6 @@ public abstract class AbstractBudgetCalculator {
                 List<String> warningMessages = new ArrayList<String>();
 
                 for (AbstractBudgetCalculatedAmount budgetLineItemCalculatedAmount : qlLineItemCalcAmts) {
-                    budgetLineItemCalculatedAmount.refreshNonUpdateableReferences();
                     applyRateFlag = budgetLineItemCalculatedAmount.getApplyRateFlag();
                     rateClassCode = budgetLineItemCalculatedAmount.getRateClassCode();
                     rateTypeCode = budgetLineItemCalculatedAmount.getRateTypeCode();

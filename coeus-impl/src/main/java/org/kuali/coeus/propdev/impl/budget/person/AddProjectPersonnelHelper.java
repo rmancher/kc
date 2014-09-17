@@ -61,7 +61,7 @@ public class AddProjectPersonnelHelper extends AddLineHelper {
         budgetPersonGroupName="";
         currentTabBudgetPeriod = new BudgetPeriod();
     }
-
+    
 	public BudgetPerson getEditBudgetPerson() {
 		return editBudgetPerson;
 	}

@@ -15,11 +15,15 @@
  */
 package org.kuali.coeus.common.budget.framework.personnel;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.kuali.coeus.common.budget.framework.copy.DeepCopyIgnore;
 import org.kuali.coeus.sys.api.model.ScaleTwoDecimal;
@@ -43,7 +47,7 @@ public class BudgetPersonnelRateAndBase extends AbstractBudgetRateAndBase {
     @Column(name = "BUDGET_PERSONNEL_CAL_AMTS_ID")
     private Long budgetPersonnelCalculatedAmountId;
 
-    @Column(name = "BUDGET_PERSONNEL_DETAILS_ID")
+    @Column(name = "BUDGET_PERSONNEL_DETAILS_ID", insertable = false, updatable = false)
     private Long budgetPersonnelLineItemId;
 
     @Column(name = "PERSON_ID")
@@ -55,6 +59,10 @@ public class BudgetPersonnelRateAndBase extends AbstractBudgetRateAndBase {
     @Column(name = "SALARY_REQUESTED")
     @Convert(converter = ScaleTwoDecimalConverter.class)
     private ScaleTwoDecimal salaryRequested;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+    @JoinColumn(name = "BUDGET_PERSONNEL_DETAILS_ID")
+    private BudgetPersonnelDetails budgetPersonnelDetails;
 
     /**
      * Gets the salaryRequested attribute. 
@@ -151,4 +159,13 @@ public class BudgetPersonnelRateAndBase extends AbstractBudgetRateAndBase {
     public void setBudgetPersonnelRateAndBaseId(Long budgetPersonnelRateAndBaseId) {
         this.budgetPersonnelRateAndBaseId = budgetPersonnelRateAndBaseId;
     }
+
+	public BudgetPersonnelDetails getBudgetPersonnelDetails() {
+		return budgetPersonnelDetails;
+	}
+
+	public void setBudgetPersonnelDetails(
+			BudgetPersonnelDetails budgetPersonnelDetails) {
+		this.budgetPersonnelDetails = budgetPersonnelDetails;
+	}
 }

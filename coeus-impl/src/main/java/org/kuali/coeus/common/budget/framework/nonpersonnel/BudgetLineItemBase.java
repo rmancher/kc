@@ -151,9 +151,9 @@ public abstract class BudgetLineItemBase extends KcPersistableBusinessObjectBase
         return getBudgetService().ValidInflationCeRate(this);
     }
 
-    public abstract Long getBudgetLineItemId();
+    //public abstract Long getBudgetLineItemId();
 
-    public abstract void setBudgetLineItemId(Long budgetLineItemId);
+    //public abstract void setBudgetLineItemId(Long budgetLineItemId);
 
     public abstract void setSubmitCostSharingFlag(Boolean submitCostSharingFlag);
 
